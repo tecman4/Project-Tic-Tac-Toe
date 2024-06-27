@@ -8,7 +8,13 @@ function Gameboard() {
           board[i].push(Cell());
         }
       }
-    }
+  const getBoard = () => board;
+  const printBoard = () => {
+    const boardWithCellValues = board.map((row) => row.map((cell) => cell.getValue()))
+    console.log(boardWithCellValues);
+  };  
+  }
+
 function Cell() {
     let value = 0;
 
@@ -24,4 +30,6 @@ function Cell() {
         addToken,
         getValue
     };
-    }    
+  }
+
+  
