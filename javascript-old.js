@@ -77,7 +77,7 @@ function Cell() {
       console.log(
         `Dropping ${getActivePlayer().name}'s token into ${row,column}...`
       );
-      board.dropToken(row,column, getActivePlayer().token);
+      board.placeToken(row,column, getActivePlayer().token);
   
       /*  This is where we would check for a winner and handle that logic,
           such as a win message. */

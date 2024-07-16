@@ -1,48 +1,22 @@
-*{
-    margin:1px;
-        justify-content: center;
-        align-items: center;
-    }
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center; 
-        min-height: 100vh;
-        margin: 0;
-      }
-    main{
+.board {
+    display: grid;
+    height: 500px;
+    width: 500px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    border: 1px solid black;
+    gap: 2px;
+    padding: 2px;
+    background-color: yellow;
+  }
+  
+  .cell {
     display: flex;
-    flex-direction: column;
-    margin: 5%;
-    border: 10px;
-    border-style:double;
-    max-width: 350px;
     justify-content: center;
-    align-items: center; 
-    
-    
-    
-    }
-    button{
-        font-size: 40px;;
-        font-weight: bolder;
-        margin:0;
-        min-width: 75px;
-        border-radius: 10px;
-        
-    }
-    .display{
-        border-color: black;
-        border: 2px;
-        border-style: groove;
-        font-size: 50px;
-        min-width: 310px;
-        text-align: right;
-        
-        
-    
-    
-    }
-
-
-    
+    align-items: center;
+    text-align: center;
+    font-size: 2rem;
+    border: 1px solid grey;
+    background: lightyellow;
+    cursor: pointer;
+  }
