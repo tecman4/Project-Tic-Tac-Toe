@@ -20,6 +20,16 @@ function Gameboard() {
   return false;
   };
 
+  const checkWinner = () => {
+    console.log('winner check')
+
+    if (arr[0][0] == arr[0][1] == arr[0][2]) {
+      return true;
+  }
+  return false;
+  };
+
+
   const printBoard = () => {
     const boardWithCellValues = board.map((row) => row.map((cell) => cell.getValue()))
     console.log(boardWithCellValues);
@@ -52,11 +62,11 @@ function GameController(
   const players = [
     {
       name: playerOneName,
-      token:"X"
+      token:"2"
     },
     {
       name: playerTwoName,
-      token: "O"
+      token: "3"
     }
   ];
 
@@ -79,6 +89,9 @@ function GameController(
     );
     if (board.dropToken(row, column, getActivePlayer().token)) {
       error.textContent = ""
+      const winner = checkWinner();
+      if(winner)
+        error.textContent = `'${getActivePlayer().name} Wins!'`
 
       
       /*  This is where we would check for a winner and handle that logic,
