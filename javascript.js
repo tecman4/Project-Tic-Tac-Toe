@@ -22,10 +22,20 @@ function Gameboard() {
   };
 
 const checkWinner = () => {
-    console.log('winner check')
-
-    if (arr[0][0] == arr[0][1] == arr[0][2]) {
+  for (let i = 0; i < rows; i++) {
+    if (board[i][0].getValue() !== "" && board[i][0].getValue() === board[i][1].getValue() && board[i][0].getValue() === board[i][2].getValue()) {
       return true;
+    }
+    if (board[0][i].getValue() !== "" && board[0][i].getValue() === board[1][i].getValue() && board[0][i].getValue() === board[2][i].getValue()) {
+      return true;
+    }
+  }
+  // Check diagonals
+  if (board[0][0].getValue() !== "" && board[0][0].getValue() === board[1][1].getValue() && board[0][0].getValue() === board[2][2].getValue()) {
+    return true;
+  }
+  if (board[0][2].getValue() !== "" && board[0][2].getValue() === board[1][1].getValue() && board[0][2].getValue() === board[2][0].getValue()) {
+    return true;
   }
   return false;
   };
@@ -36,7 +46,7 @@ const checkWinner = () => {
     console.log(boardWithCellValues);
   };
 
-  return { getBoard, dropToken, printBoard };
+  return { getBoard, dropToken, checkWinner, printBoard };
 }
 
 function Cell() {
@@ -63,11 +73,11 @@ function GameController(
   const players = [
     {
       name: playerOneName,
-      token:"2"
+      token:"X"
     },
     {
       name: playerTwoName,
-      token: "3"
+      token: "O"
     }
   ];
 
@@ -90,18 +100,13 @@ function GameController(
     );
     if (board.dropToken(row, column, getActivePlayer().token)) {
       error.textContent = ""
-      var winner = board.winner;
-      console.log('winner check'+winner);
-      if(winner){
-        console.log('winner check'+winner)
+      if(board.checkWinner()){
         error.textContent = `'${getActivePlayer().name} Wins!'`
         }
-
-      
-      /*  This is where we would check for a winner and handle that logic,
-          such as a win message. */
+        else{
       switchPlayerTurn();
       printNewRound();
+      }
     } else {
       error.textContent = "Invalid move. Try again."
 
